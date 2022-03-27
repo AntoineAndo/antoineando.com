@@ -48,6 +48,11 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
   function handleMenuItemClick(page: any){
 
+    //If the user is already on the clicked page
+    if(appState.currentPage.name == page.name){
+      return ;
+    }
+
     //Prevents the Home button from having an empty hash #
     if(page.url == undefined){
       location.hash = "";
@@ -67,7 +72,6 @@ const Home: NextPage = ({pages, config, projects}: any) => {
   }
 
   function displayContent(){
-    console.log("callback");
     patchState({
       isAnimationRunning: false,
       currentPage: appState.nextPage,
