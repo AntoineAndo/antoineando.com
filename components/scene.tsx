@@ -21,8 +21,7 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
     useImperativeHandle(ref, () => ({
         triggerAnimation(targetPage: Page){
 
-        //TODO
-        //Implement mobile check
+        //Get appropriate camera configuration based on device
         let targetPosition
         if(config.isMobile){
           targetPosition = targetPage.cameraPositions.mobile;
@@ -42,7 +41,7 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
         animationCallback();
     }
 
-    //Implement mobile check
+    //Get appropriate camera configuration based on device
     let _cameraPosition;
     if(config.isMobile){
         _cameraPosition =  cameraPositions.mobile;
