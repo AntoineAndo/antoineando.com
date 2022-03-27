@@ -1,0 +1,30 @@
+.content {
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	animation: 0.5s ease 0s 1 fadeIn;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+    border: solid 1px white;
+    padding: 5px;
+}
+
+.hidden {
+	opacity: 0 !important;
+	transition: opacity 0.5s;
+	transition-delay: 1s;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@keyframes fadeIn {
+	0% {
+	  opacity: 0;
+	}
+	100% {
+	  opacity: 1;
+	}
+}

@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'SpaceFont';
+	src: url('../public/fonts/Space_Mono/SpaceMono-Regular.ttf') format('truetype'); /* Modern Browsers */
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+
+	color: white;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+section {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	font-family: 'SpaceFont';
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.content-container{
+		height: 100%;
+		width: 42%;
+	}
+
+	nav {
+		width: 100%;
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+
+		.button {
+			margin-bottom: 10px;
+			font-family: 'SpaceFont';
+			font-size: 18px;
+			border: white solid 1px;
+			padding: 5px 5px;
+			transition: all ease 0.2s;
+			display: flex;
+			justify-content: center;	
+
+
+			&:before {
+				content: '[';
+			}
+			
+			&:after {
+				content: ']';
+			}
+			
+			&:not(.inactive):hover {
+				box-shadow: inset 1px 1px white, inset -1px -1px white;
+				cursor: pointer;
+			}
+
+			span {
+				display: inline-flex;
+				overflow: hidden;
+				width: 100%;
+				transition: all ease 0.5s;
+			}
+		}
+	}
+}
