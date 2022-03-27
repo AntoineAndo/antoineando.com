@@ -1,17 +1,14 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef, useState } from 'react';
 import { sanityClient } from "../sanity";
-import { Vector3 } from 'three';
 import Scene from '../components/scene';
 import PageContent from '../components/page-content/page-content.module';
 
-const Home: NextPage = ({pages, config, projects}: any) => {
-  // let [isLoaded, setIsLoaded] = useState(false);
-  // let [currentPage, setCurrentPage]: any = useState({});
-  // let [nextPage, setNextPage]: any = useState({});
-  // let [animationIsRunning, setAnimationisRunning] = useState(false);
+import { AppState, Page, Project } from '../components/types/types';
 
-  let [appState, setAppState]: any = useState({
+const Home: NextPage = ({pages, config, projects}: any) => {
+
+  let [appState, setAppState]: [AppState, Function] = useState({
     isLoaded: false,
     isAnimationRunning: false,
     currentPage: {},
@@ -152,9 +149,9 @@ export const getStaticProps = async ()=>{
   const queryProjects = `
   *[_type=="project"] | order(publishedAt desc)`;
 
-  const pages = await sanityClient.fetch(queryPages);
+  const pages: Array<Page> = await sanityClient.fetch(queryPages);
   const config = await sanityClient.fetch(queryInformations);
-  const projects = await sanityClient.fetch(queryProjects);
+  const projects: Array<Project> = await sanityClient.fetch(queryProjects);
 
   return {
     props: {
