@@ -16,7 +16,7 @@ function PageContent({currentPage, projects, animationIsRunning}: Props) {
     if(currentPage.displayProjects){
         return (<div className={`${styles.content} ${animationIsRunning ? styles.hidden: ''}`}>
             {projects.map((project:any)=>{
-                return (<ProjectCard project={project} />)
+                return (<div key={project.slug}><ProjectCard project={project} /></div>)
             })}
         </div>)
     }

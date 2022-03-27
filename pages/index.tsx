@@ -20,23 +20,15 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
   const sceneRef = useRef()
 
-  let initialPosition : Vector3;
-
   //onMount
   useEffect(()=>{
   
+    //Get the appropriate pixel ratio for all devices
     config.devicePixelRatio = (window.devicePixelRatio>3)?3:window.devicePixelRatio;
 
     //Get the page to load based on the current hash
     let hash = (location.hash == "") ? undefined : location.hash.replace('#','');
     let initialPage = pages.find((page: any)=>(page.url == hash))
-    if(initialPage != undefined){
-      initialPosition = new Vector3(
-        initialPage.desktopCameraPosition.x,
-        initialPage.desktopCameraPosition.y, 
-        initialPage.desktopCameraPosition.z
-      );
-    }
 
     patchState({
       isLoaded: true, 
@@ -45,7 +37,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
   }, [])
 
-
+  
   function handleMenuItemClick(page: any){
 
     //If the user is already on the clicked page
@@ -71,6 +63,9 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     }
   }
 
+  /**
+   * Callback method called to display the content while the camera animation is still running
+   */
   function displayContent(){
     patchState({
       isAnimationRunning: false,
@@ -78,6 +73,9 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     })
   }
   
+  /**
+   * Callback method called once the camera movement is complete
+   */
   function animationCallback(){
     patchState({
       isAnimationRunning: false,
@@ -86,6 +84,10 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     })
   }
 
+  /**
+   * Method used to patch the current app state by providing only the data to update
+   * @param data 
+   */
   function patchState(data: any){
 
     //Duplicate current state;
@@ -124,7 +126,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
           </div>
           <nav>
             {pages.map((page : any) => {
-              return (<div className='button' onClick={(event) => handleMenuItemClick(page)}>
+              return (<div className='button' onClick={(event) => handleMenuItemClick(page)} key={page.url}>
                   <span>{page.name}</span>
                 </div>)}
             )}
