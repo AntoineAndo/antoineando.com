@@ -23,6 +23,8 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     //Get the appropriate pixel ratio for all devices
     config.devicePixelRatio = (window.devicePixelRatio>3)?3:window.devicePixelRatio;
 
+    config.isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
     //Get the page to load based on the current hash
     let hash = (location.hash == "") ? undefined : location.hash.replace('#','');
     let initialPage = pages.find((page: any)=>(page.url == hash))
@@ -35,7 +37,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
   }, [])
 
   
-  function handleMenuItemClick(page: any){
+  function handleMenuItemClick(page: Page){
 
     //If the user is already on the clicked page
     if(appState.currentPage.name == page.name){
@@ -114,7 +116,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
           config={config} 
           ref={sceneRef}
           //Move to next page if defined, else display current page
-          cameraPosition={(appState.nextPage.desktopCameraPosition != undefined ? appState.nextPage.desktopCameraPosition : appState.currentPage.desktopCameraPosition)}
+          cameraPositions={(appState.nextPage.cameraPositions != undefined ? appState.nextPage.cameraPositions : appState.currentPage.cameraPositions)}
           displayContentCallback={displayContent}
           animationCallback={animationCallback}/>
         <section>

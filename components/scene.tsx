@@ -3,26 +3,32 @@ import React, { forwardRef, Suspense, useEffect, useImperativeHandle, useState }
 import AnimationManager from './animation-manager'
 import Moon from './moon'
 import Text from './text'
+import { Page } from './types/types'
 
 type Props = {
     "config": any,
-    "cameraPosition": any,
+    "cameraPositions": any,
     "animationCallback": Function,
     "displayContentCallback": Function
 }
 
-const Scene = forwardRef(({config, cameraPosition, animationCallback, displayContentCallback}: Props, ref) => {
+const Scene = forwardRef(({config, cameraPositions, animationCallback, displayContentCallback}: Props, ref) => {
 
     let [runningAnimation, setRunningAnimation] = useState({});
   
     //Allow the parent trigger the animation
     //User by the navigation buttons
     useImperativeHandle(ref, () => ({
-        triggerAnimation(targetPage: any){
+        triggerAnimation(targetPage: Page){
 
         //TODO
         //Implement mobile check
-        let targetPosition = targetPage.desktopCameraPosition;
+        let targetPosition
+        if(config.isMobile){
+          targetPosition = targetPage.cameraPositions.mobile;
+        }else{
+            targetPosition = targetPage.cameraPositions.desktop;
+        }
 
         setRunningAnimation({
             targetPosition,
@@ -34,6 +40,14 @@ const Scene = forwardRef(({config, cameraPosition, animationCallback, displayCon
         //Set the internal 'runningAnimation' state to empty so that the animation manager stops processing
         setRunningAnimation({})
         animationCallback();
+    }
+
+    //Implement mobile check
+    let _cameraPosition;
+    if(config.isMobile){
+        _cameraPosition =  cameraPositions.mobile;
+    }else{
+        _cameraPosition =  cameraPositions.desktop;
     }
 
     return (
@@ -49,7 +63,7 @@ const Scene = forwardRef(({config, cameraPosition, animationCallback, displayCon
                 fov: 75,
                 near: 0.1,
                 far: 1000,
-                position: [cameraPosition.x, cameraPosition.y, cameraPosition.z],
+                position: [_cameraPosition.x, _cameraPosition.y, _cameraPosition.z],
         }}>
             <Suspense fallback={null}>
                 <AnimationManager
