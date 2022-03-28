@@ -19,7 +19,6 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
   //onMount
   useEffect(()=>{
-  
     //Get the appropriate pixel ratio for all devices
     config.devicePixelRatio = (window.devicePixelRatio>3)?3:window.devicePixelRatio;
 
@@ -36,6 +35,23 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
   }, [])
 
+
+  useEffect(()=>{
+    //Subscript to hash change
+    //Allow navigation using browser's previous and next buttons
+    window.addEventListener('hashchange', handleHashChange);
+
+    //Subscription cleanup
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  })
+
+  function handleHashChange(){
+    let hash = (location.hash == "") ? undefined : location.hash.replace('#','');
+    let page = pages.find((page: any)=>(page.url == hash))
+
+    navigate(page);
+  }
+
   
   function handleMenuItemClick(page: Page){
 
@@ -51,13 +67,16 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     }else{
       location.hash = page.url
     }
+  }
 
-    if(sceneRef.current != undefined){
+  function navigate(page: Page){
+    let currentSceneRef: any = sceneRef.current;
+    if(currentSceneRef != undefined){
       patchState({
         nextPage: page,
         isAnimationRunning: true
       });
-      (sceneRef.current as any).triggerAnimation(page);
+      currentSceneRef.triggerAnimation(page);
 
     }
   }
