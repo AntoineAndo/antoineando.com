@@ -14,7 +14,9 @@ function PageContent({currentPage, projects, animationIsRunning}: Props) {
 
     //Work listing page
     if(currentPage.displayProjects){
-        return (<div className={`${styles.content} ${animationIsRunning ? styles.hidden: ''}`}>
+        const pageContent = contentToHtml(currentPage.content)
+        return (<div className={`${styles.content} ${styles.half} ${animationIsRunning ? styles.hidden: ''}`}>
+            <div dangerouslySetInnerHTML={{__html: pageContent}}></div>
             {projects.map((project:any)=>{
                 return (<div key={project.slug}><ProjectCard project={project} /></div>)
             })}
@@ -24,7 +26,7 @@ function PageContent({currentPage, projects, animationIsRunning}: Props) {
     //Regular content page
     if(currentPage.displayContent){
         const pageContent = contentToHtml(currentPage.content)
-        return (<div className={`${styles.content} ${animationIsRunning ? styles.hidden: ''}`} dangerouslySetInnerHTML={{__html: pageContent}}></div>)
+        return (<div className={`${styles.content} ${styles.half} ${animationIsRunning ? styles.hidden: ''}`} dangerouslySetInnerHTML={{__html: pageContent}}></div>)
     }
 
     return <></>

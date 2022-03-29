@@ -18,6 +18,11 @@ export default {
         },
       },
       {
+        name: 'link',
+        title: 'Link',
+        type: 'string',
+      },
+      {
         name: 'mainImage',
         title: 'Main image',
         type: 'image',
@@ -37,8 +42,13 @@ export default {
         type: 'datetime',
       },
       {
-        name: 'body',
-        title: 'Body',
+        name: 'shortDescription',
+        title: 'Short description',
+        type: 'string',
+      },
+      {
+        name: 'description',
+        title: 'Description',
         type: 'blockContent',
       },
     ],

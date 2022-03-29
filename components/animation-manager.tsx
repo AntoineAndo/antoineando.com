@@ -25,7 +25,7 @@ function AnimationManager({runningAnimation, callback, displayContentCallback}: 
         //Moon rotation
         let moon = state.scene.getObjectByName('moon');
         if(moon == undefined) return;
-        moon.rotation.y += 0.0002;
+        moon.rotation.y += 0.00013;
 
         if(runningAnimation.targetPosition != undefined){
 

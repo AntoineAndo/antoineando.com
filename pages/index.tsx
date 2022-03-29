@@ -1,18 +1,19 @@
 import type { NextPage } from 'next'
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { sanityClient } from "../sanity";
 import Scene from '../components/scene';
 import PageContent from '../components/page-content/page-content.module';
 
 import { AppState, Page, Project } from '../components/types/types';
+import LoadingScreen from '../components/loading-screen/loading-screen.module';
 
 const Home: NextPage = ({pages, config, projects}: any) => {
 
   let [appState, setAppState]: [AppState, Function] = useState({
     isLoaded: false,
     isAnimationRunning: false,
-    currentPage: {},
-    nextPage: {},
+    currentPage: {} as Page,
+    nextPage: {} as Page,
   })
 
   const sceneRef = useRef()
@@ -28,10 +29,12 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     let hash = (location.hash == "") ? undefined : location.hash.replace('#','');
     let initialPage = pages.find((page: any)=>(page.url == hash))
 
-    patchState({
-      isLoaded: true, 
-      currentPage: initialPage
-    })
+    setTimeout(()=>{
+      patchState({
+        isLoaded: true, 
+        currentPage: initialPage
+      })
+    }, 1000)
 
   }, [])
 
@@ -127,7 +130,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
   }
 
   //Render the scene once the data are loaded
-  if(appState.isLoaded && appState.currentPage != {}){
+  if(appState.isLoaded && appState.currentPage.cameraPositions != undefined){
 
     return (
       <div id="root" className='h-screen w-screen'>
@@ -154,8 +157,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     );
   }
 
-  //Fallback if not loaded
-  return <div id="root" className='h-screen w-screen'></div>
+  return <></>;
 
 }
 

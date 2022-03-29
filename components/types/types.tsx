@@ -26,10 +26,12 @@ export type CameraPosition = {
 }
 
 export type Project = {
-    title: string, 
+    title: string,
+    link: string,
     slug: string, 
     mainImage: any, 
     categories: [],
     publishedAt: any,
-    body: any
+    shortDescription: string,
+    description: any
 }

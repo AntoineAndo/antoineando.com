@@ -23,6 +23,9 @@ body {
     padding: 0;
 }
 
+ul, ol {
+	list-style-type: circle;
+}
 
 
 section {
@@ -39,7 +42,9 @@ section {
 
 	.content-container{
 		height: 100%;
-		width: 42%;
+		width: 100%;
+
+		padding: 20px;
 	}
 
 	nav {
@@ -52,7 +57,7 @@ section {
 			margin-bottom: 10px;
 			font-family: 'SpaceFont';
 			font-size: 18px;
-			border: white solid 1px;
+			//border: white solid 1px;
 			padding: 5px 5px;
 			transition: all ease 0.2s;
 			display: flex;

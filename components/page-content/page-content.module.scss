@@ -6,8 +6,22 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-    border: solid 1px white;
-    padding: 5px;
+    //border: solid 1px white;
+    padding: 10px;
+	overflow-y: auto;
+
+
+	&.half {
+		width: 43%;
+	}
+
+
+
+	h3 {
+		font-size: 2.2em;
+		font-weight: bold;
+	}
+
 }
 
 .hidden {
