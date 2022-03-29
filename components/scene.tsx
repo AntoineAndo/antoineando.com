@@ -1,10 +1,12 @@
-import { Loader } from '@react-three/drei'
+import { Html, Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { forwardRef, Suspense, useEffect, useImperativeHandle, useState } from 'react'
 import AnimationManager from './animation-manager'
 import LoadingScreen from './loading-screen/loading-screen.module'
-import Moon from './moon'
-import Text from './text'
+//import Moon from './moon'
+//import Text from './text'
+const Moon = React.lazy(()=> import('./moon'));
+const Text = React.lazy(()=> import('./text'));
 import { Page } from './types/types'
 
 type Props = {
@@ -17,6 +19,8 @@ type Props = {
 const Scene = forwardRef(({config, cameraPositions, animationCallback, displayContentCallback}: Props, ref) => {
 
     let [runningAnimation, setRunningAnimation] = useState({});
+
+    console.log("scene render");
   
     //Allow the parent trigger the animation
     //User by the navigation buttons
@@ -67,12 +71,12 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
                     far: 1000,
                     position: [_cameraPosition.x, _cameraPosition.y, _cameraPosition.z],
             }}>
-                <Suspense fallback={<LoadingScreen />}>
                     <AnimationManager
                         runningAnimation={runningAnimation}
                         callback={_animationCallback}
                         displayContentCallback={displayContentCallback}/>
                     <directionalLight position={[40, 0, 20]} color="white" intensity={1.1} />
+                <Suspense fallback={<Html fullscreen><LoadingScreen /></Html>}>
                     <Text color='#FF0502' bold={true} fontSize='1.7' position={[6.2,1,40]} letterSpacing={-0.01}>{config.name}</Text>
                     <Text color='#FFF' fontSize='0.95' position={[6.3,-0.2,40]} letterSpacing={-0.04}>{config.jobTitle}</Text>
                     <Moon />

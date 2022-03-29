@@ -27,6 +27,11 @@ ul, ol {
 	list-style-type: circle;
 }
 
+.fallback {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
 
 section {
 	height: 100%;

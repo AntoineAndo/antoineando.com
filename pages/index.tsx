@@ -6,6 +6,7 @@ import PageContent from '../components/page-content/page-content.module';
 
 import { AppState, Page, Project } from '../components/types/types';
 import LoadingScreen from '../components/loading-screen/loading-screen.module';
+import MenuEntry from '../components/menu-entry/menu-entry.module';
 
 const Home: NextPage = ({pages, config, projects}: any) => {
 
@@ -146,10 +147,8 @@ const Home: NextPage = ({pages, config, projects}: any) => {
             <PageContent currentPage={appState.currentPage} projects={projects} animationIsRunning={appState.isAnimationRunning} />
           </div>
           <nav>
-            {pages.map((page : any) => {
-              return (<div className='button' onClick={(event) => handleMenuItemClick(page)} key={page.url}>
-                  <span>{page.name}</span>
-                </div>)}
+            {pages.map((page : Page) => {
+              return (<MenuEntry page={page} handleMenuItemClick={handleMenuItemClick} key={page.name}/>)}
             )}
           </nav>
         </section>
@@ -157,7 +156,7 @@ const Home: NextPage = ({pages, config, projects}: any) => {
     );
   }
 
-  return <></>;
+  return <LoadingScreen />;
 
 }
 
