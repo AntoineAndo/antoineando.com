@@ -76,11 +76,9 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
                         callback={_animationCallback}
                         displayContentCallback={displayContentCallback}/>
                     <directionalLight position={[40, 0, 20]} color="white" intensity={1.1} />
-                <Suspense fallback={<Html fullscreen><LoadingScreen /></Html>}>
                     <Text color='#FF0502' bold={true} fontSize='1.7' position={[6.2,1,40]} letterSpacing={-0.01}>{config.name}</Text>
                     <Text color='#FFF' fontSize='0.95' position={[6.3,-0.2,40]} letterSpacing={-0.04}>{config.jobTitle}</Text>
                     <Moon />
-                </Suspense>
             </Canvas>
         </>
     )
