@@ -7,6 +7,9 @@ import PageContent from '../components/page-content/page-content.module';
 import { AppState, Page, Project } from '../components/types/types';
 import LoadingScreen from '../components/loading-screen/loading-screen.module';
 import MenuEntry from '../components/menu-entry/menu-entry.module';
+import { Html } from '@react-three/drei';
+import Menu from '../components/menu/menu.module';
+import HeadComponent from '../components/head/head';
 
 const Home: NextPage = ({pages, config, projects}: any) => {
 
@@ -135,23 +138,23 @@ const Home: NextPage = ({pages, config, projects}: any) => {
 
     return (
       <div id="root" className='h-screen w-screen'>
-        <Scene 
-          config={config} 
-          ref={sceneRef}
-          //Move to next page if defined, else display current page
-          cameraPositions={(appState.nextPage.cameraPositions != undefined ? appState.nextPage.cameraPositions : appState.currentPage.cameraPositions)}
-          displayContentCallback={displayContent}
-          animationCallback={animationCallback}/>
-        <section>
-          <div className="content-container">
-            <PageContent currentPage={appState.currentPage} projects={projects} animationIsRunning={appState.isAnimationRunning} />
-          </div>
-          <nav>
-            {pages.map((page : Page) => {
-              return (<MenuEntry page={page} handleMenuItemClick={handleMenuItemClick} key={page.name}/>)}
-            )}
-          </nav>
-        </section>
+        <HeadComponent />
+        <Suspense fallback={<LoadingScreen />}>
+
+          <Scene 
+            config={config} 
+            ref={sceneRef}
+            //Move to next page if defined, else display current page
+            cameraPositions={(appState.nextPage.cameraPositions != undefined ? appState.nextPage.cameraPositions : appState.currentPage.cameraPositions)}
+            displayContentCallback={displayContent}
+            animationCallback={animationCallback}/>
+          <section>
+            <div className="content-container">
+              <PageContent currentPage={appState.currentPage} projects={projects} animationIsRunning={appState.isAnimationRunning} />
+            </div>
+            <Menu pages={pages} handleMenuItemClick={handleMenuItemClick} currentPage={appState.currentPage}/>
+          </section>
+        </Suspense>
       </div>
     );
   }
