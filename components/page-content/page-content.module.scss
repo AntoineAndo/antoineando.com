@@ -3,6 +3,7 @@
 	width: 100%;
 	opacity: 1;
 	animation: 0.5s ease 0s 1 fadeIn;
+	transition: opacity 0.5s;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -26,8 +27,17 @@
 
 .hidden {
 	opacity: 0 !important;
-	transition: opacity 0.5s;
+	transition: opacity ease-in 0.5s;
 	transition-delay: 1s;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.hiddenInstant {
+	opacity: 0 !important;
+	transition: opacity 0.5s;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
