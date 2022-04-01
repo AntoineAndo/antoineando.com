@@ -76,8 +76,8 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
                         callback={_animationCallback}
                         displayContentCallback={displayContentCallback}/>
                     <directionalLight position={[40, 0, 20]} color="white" intensity={1.1} />
-                    <Text color='#FF0502' bold={true} fontSize='1.7' position={[6.2,1,40]} letterSpacing={-0.01}>{config.name}</Text>
-                    <Text color='#FFF' fontSize='0.95' position={[6.3,-0.2,40]} letterSpacing={-0.04}>{config.jobTitle}</Text>
+                    <Text color='#FF0502' bold={true} fontSize='3' position={[11,0,32]} letterSpacing={-0.01} >{config.name}</Text>
+                    <Text color='#FFF' fontSize='1.73' position={[11,-2,32]} letterSpacing={-0.04}>{config.jobTitle}</Text>
                     <Moon />
             </Canvas>
         </>
