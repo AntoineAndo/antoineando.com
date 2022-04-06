@@ -1,0 +1,55 @@
+.projectDetail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 90vh;
+	background-color: rgba(0,0,0,0.8);
+    border: solid 1px white;
+    padding: 10px;
+    backdrop-filter: blur(4px);
+
+    .header {
+
+        position: relative;
+        text-align: center;
+        height: 50px;
+
+        h1 {
+            font-size: 2em;
+        }
+
+        span.close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .body {
+
+        height: calc(100% - 55px);
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+
+        img {
+            width: 50%;
+            margin: auto;
+        }
+
+        .content {
+            
+            width: 80%;
+            margin: auto;
+
+            p {
+                margin: 10px auto;
+            }
+
+        }
+
+
+    }
+}
