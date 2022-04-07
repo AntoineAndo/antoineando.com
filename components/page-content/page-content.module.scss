@@ -42,6 +42,18 @@
 	user-select: none;
 }
 
+
+//Responsive
+@media only screen and (max-width: 760px) {
+	.content {
+		&.half {
+			width: 100%;
+		}
+	}
+}
+
+
+
 @keyframes fadeIn {
 	0% {
 	  opacity: 0;
