@@ -6,8 +6,6 @@ import PageContent from '../components/page-content/page-content.module';
 
 import { AppState, Page, Project } from '../components/types/types';
 import LoadingScreen from '../components/loading-screen/loading-screen.module';
-import MenuEntry from '../components/menu-entry/menu-entry.module';
-import { Html } from '@react-three/drei';
 import Menu from '../components/menu/menu.module';
 import HeadComponent from '../components/head/head';
 
@@ -149,6 +147,8 @@ const Home: NextPage = ({pages, config, projects}: any) => {
             displayContentCallback={displayContent}
             animationCallback={animationCallback}/>
           <section>
+            <div
+              className={`backdrop ${(appState.currentPage.name != 'Home' && !appState.isAnimationRunning )?'':'hidden'}`}></div>
             <div className="content-container">
               <PageContent currentPage={appState.currentPage} projects={projects} animationIsRunning={appState.isAnimationRunning} />
             </div>

@@ -1,8 +1,6 @@
-import { Html, Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { forwardRef, Suspense, useEffect, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import AnimationManager from './animation-manager'
-import LoadingScreen from './loading-screen/loading-screen.module'
 //import Moon from './moon'
 //import Text from './text'
 const Moon = React.lazy(()=> import('./moon'));
@@ -20,8 +18,6 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
 
     let [runningAnimation, setRunningAnimation] = useState({});
 
-    console.log("scene render");
-  
     //Allow the parent trigger the animation
     //User by the navigation buttons
     useImperativeHandle(ref, () => ({
@@ -49,10 +45,35 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
 
     //Get appropriate camera configuration based on device
     let _cameraPosition;
+    let textConfiguration;
     if(config.isMobile){
         _cameraPosition =  cameraPositions.mobile;
+        textConfiguration = {
+            'name': {
+                'value': config.name,
+                'positions': config.nameConfiguration.mobilePositions,
+                'fontSize': config.nameConfiguration.mobilePositions.fontSize
+            },
+            'title': {
+                'value': config.jobTitle,
+                'positions': config.titleConfiguration.mobilePositions,
+                'fontSize': config.titleConfiguration.mobilePositions.fontSize
+            },
+        }
     }else{
         _cameraPosition =  cameraPositions.desktop;
+        textConfiguration = {
+            'name': {
+                'value': config.name,
+                'positions': config.nameConfiguration.desktopPositions,
+                'fontSize': config.nameConfiguration.desktopPositions.fontSize
+            },
+            'title': {
+                'value': config.title,
+                'positions': config.titleConfiguration.desktopPositions,
+                'fontSize': config.titleConfiguration.desktopPositions.fontSize
+            },
+        }
     }
 
     return (
@@ -76,8 +97,25 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
                         callback={_animationCallback}
                         displayContentCallback={displayContentCallback}/>
                     <directionalLight position={[40, 0, 20]} color="white" intensity={1.1} />
-                    <Text color='#FF0502' bold={true} fontSize='3' position={[11,0,32]} letterSpacing={-0.01} >{config.name}</Text>
-                    <Text color='#FFF' fontSize='1.73' position={[11,-2,32]} letterSpacing={-0.04}>{config.jobTitle}</Text>
+                    <Text color='#FF0502' 
+                        bold={true} 
+                        fontSize={textConfiguration.name.fontSize} 
+                        position={[
+                            textConfiguration.name.positions.x,
+                            textConfiguration.name.positions.y,
+                            textConfiguration.name.positions.z]}
+                        letterSpacing={-0.01} >
+                            {config.name}
+                    </Text>
+                    <Text color='#FFF'
+                        fontSize={textConfiguration.title.fontSize}
+                        position={[
+                            textConfiguration.title.positions.x,
+                            textConfiguration.title.positions.y,
+                            textConfiguration.title.positions.z]}
+                        letterSpacing={-0.04}>
+                            {config.jobTitle}
+                    </Text>
                     <Moon />
             </Canvas>
         </>

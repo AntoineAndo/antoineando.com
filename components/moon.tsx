@@ -9,8 +9,6 @@ type Props = {}
 
 function Moon({}: Props) {
 
-    console.log("moon render")
-
     const ref: any = useRef();
 
     //Rotation initiale
