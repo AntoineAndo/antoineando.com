@@ -76,6 +76,8 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
         }
     }
 
+    console.log(textConfiguration);
+
     return (
         <>
             <Canvas 
