@@ -1,11 +1,11 @@
 import { Canvas } from '@react-three/fiber'
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import AnimationManager from './animation-manager'
-//import Moon from './moon'
-//import Text from './text'
+import CameraTarget from './camera-target';
+import { Page } from './types/types'
+
 const Moon = React.lazy(()=> import('./moon'));
 const Text = React.lazy(()=> import('./text'));
-import { Page } from './types/types'
 
 type Props = {
     "config": any,
@@ -24,15 +24,18 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
         triggerAnimation(targetPage: Page){
 
         //Get appropriate camera configuration based on device
-        let targetPosition
+        let targetPosition, lookAtMoon;
         if(config.isMobile){
           targetPosition = targetPage.cameraPositions.mobile;
+          lookAtMoon = targetPage.cameraPositions.mobile.lookAtMoon;
         }else{
             targetPosition = targetPage.cameraPositions.desktop;
+            lookAtMoon = targetPage.cameraPositions.desktop.lookAtMoon;
         }
 
         setRunningAnimation({
             targetPosition,
+            lookAtMoon
         });
         }
     }));
@@ -76,8 +79,6 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
         }
     }
 
-    console.log(textConfiguration);
-
     return (
         <>
             <Canvas 
@@ -118,6 +119,7 @@ const Scene = forwardRef(({config, cameraPositions, animationCallback, displayCo
                         letterSpacing={-0.04}>
                             {config.jobTitle}
                     </Text>
+                    <CameraTarget lookAtMoon={_cameraPosition.lookAtMoon}/>
                     <Moon />
             </Canvas>
         </>

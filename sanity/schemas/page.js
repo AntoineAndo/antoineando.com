@@ -44,6 +44,11 @@ export default {
                   title: 'Z',
                   type: 'number'
               },
+              {
+                  name: 'lookAtMoon',
+                  title: 'Look at the moon ?',
+                  type: 'boolean'
+              },
           ]
         },
         {
@@ -65,6 +70,11 @@ export default {
                     name: 'z',
                     title: 'Z',
                     type: 'number'
+                },
+                {
+                    name: 'lookAtMoon',
+                    title: 'Look at the moon ?',
+                    type: 'boolean'
                 },
             ]
         }

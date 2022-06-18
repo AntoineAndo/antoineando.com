@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-//import moonTexture from '../assets/textures/moon/moon_map-min.jpg';
-//import moonBump from '../assets/textures/moon/moon_displacement.jpg'
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 
 type Props = {}

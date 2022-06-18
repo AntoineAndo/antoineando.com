@@ -22,7 +22,8 @@ export type Page = {
 export type CameraPosition = {
     x: number,
     y: number,
-    z: number
+    z: number,
+    lookAtMoon: boolean
 }
 
 export type Project = {
