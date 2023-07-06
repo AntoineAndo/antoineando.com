@@ -1,16 +1,27 @@
 import { Text as TextDrei } from "@react-three/drei";
-import { MeshBasicMaterial } from "three";
+import { MeshBasicMaterial, Vector3 } from "three";
+
+type props = {
+  color: string;
+  fontSize: number;
+  position: any;
+  children: string;
+  bold?: boolean;
+  letterSpacing?: number;
+  strokeColor?: string;
+  strokeWidth?: number;
+};
 
 function Text({
   color,
   fontSize,
   position,
   children,
-  bold,
-  letterSpacing,
+  bold = false,
+  letterSpacing = 0,
   strokeColor,
-  strokeWidth,
-}: any) {
+  strokeWidth = 0,
+}: props) {
   const textMaterial = new MeshBasicMaterial({
     color: color,
   });

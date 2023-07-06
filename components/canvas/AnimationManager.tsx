@@ -23,7 +23,7 @@ function AnimationManager() {
     //Moon rotation
     let moon = sceneState.scene.getObjectByName("moon");
     if (moon == undefined) return;
-    moon.rotation.y += 0.0003;
+    moon.rotation.y += 0.00015;
 
     if (appState.runningAnimation != undefined) {
       const anim = appState.runningAnimation;
