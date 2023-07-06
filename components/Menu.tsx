@@ -31,10 +31,10 @@ function Menu({}: Props) {
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        position: "fixed",
-        bottom: 12,
+        marginBottom: 20,
         width: "100%",
         gap: 20,
+        zIndex: 999,
       }}
     >
       {state.routes.map((route) => {

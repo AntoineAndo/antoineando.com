@@ -28,6 +28,8 @@ function App({ Component, pageProps }: AppProps) {
             width: "100vw",
             padding: 1,
             overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
           }}
           className={SpaceFont.className}
         >

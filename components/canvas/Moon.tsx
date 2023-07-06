@@ -15,8 +15,8 @@ export const Moon = ({ route = "/bloc", ...props }) => {
   }, []);
 
   const [moonTexture, moonBump] = useLoader(THREE.TextureLoader, [
-    "/textures/moon/moon_map-min.jpg",
-    "/textures/moon/moon_displacement-min.jpg",
+    "/textures/moon/moon_map.jpg",
+    "/textures/moon/moon_displacement.jpg",
   ]);
 
   // useFrame((state, delta) => {
