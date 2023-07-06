@@ -72,7 +72,9 @@ function AboutPage({}: Props) {
           }}
         >
           <div>
-            <p style={{ textDecoration: "underline" }}>Let's work together:</p>
+            <p style={{ textDecoration: "underline" }}>
+              Let&apos;s work together:
+            </p>
             <div
               style={{
                 display: "flex",
