@@ -10,10 +10,28 @@ const SpaceFont = localFont({ src: "../public/fonts/SpaceMono-Regular.ttf" });
 
 function App({ Component, pageProps }: AppProps) {
   const [isServer, setIsServer] = useState(true);
-  const [test, setTest] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setIsServer(false);
+  }, []);
+
+  // This will run one time after the component mounts
+  useEffect(() => {
+    // callback function to call when event triggers
+    const onPageLoad = () => {
+      console.log("loaded");
+      setLoaded(true);
+    };
+
+    // Check if the page has already loaded
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad, false);
+      // Remove the event listener when component unmounts
+      return () => window.removeEventListener("load", onPageLoad);
+    }
   }, []);
   if (isServer) return null;
 
@@ -33,9 +51,9 @@ function App({ Component, pageProps }: AppProps) {
           }}
           className={SpaceFont.className}
         >
-          <Scene />
+          {loaded && <Scene />}
           {typeof window === "undefined" ? null : <Component {...pageProps} />}
-          <Menu />
+          {loaded && <Menu />}
         </div>
       </Router>
     </AppStateProvider>

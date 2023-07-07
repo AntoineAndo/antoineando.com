@@ -19,7 +19,7 @@ function AboutPage({}: Props) {
         display: "flex",
         flexDirection: "column",
         padding: 10,
-        fontSize: "1.2em",
+        fontSize: "1.1em",
       }}
     >
       <section
