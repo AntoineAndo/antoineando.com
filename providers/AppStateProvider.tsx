@@ -27,6 +27,15 @@ export class AppState {
         z: 42,
       },
     },
+    {
+      name: "Projects",
+      path: "/projects",
+      cameraTargetPosition: {
+        x: 0,
+        y: 0,
+        z: 100,
+      },
+    },
   ];
 }
 

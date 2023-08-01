@@ -7,6 +7,10 @@ const nextConfig = {
         source: "/:path*",
         destination: "/",
       },
+      {
+        source: "/about-me/:path*",
+        destination: "/about-me",
+      },
     ];
   },
 };

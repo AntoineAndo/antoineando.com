@@ -19,7 +19,7 @@ function AnimationManager() {
   const tickNbCallback = 160;
   const callbackDuration = parseFloat((tickNbCallback * dt).toFixed(3));
 
-  useFrame((sceneState) => {
+  useFrame((sceneState: any) => {
     //Moon rotation
     let moon = sceneState.scene.getObjectByName("moon");
     if (moon == undefined) return;

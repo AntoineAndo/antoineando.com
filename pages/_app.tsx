@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AppStateProvider } from "@/providers/AppStateProvider";
 import Scene from "@/components/canvas/Scene";
 import localFont from "next/font/local";
+import { sanityClient } from "@/utils/sanity";
 
 const SpaceFont = localFont({ src: "../public/fonts/SpaceMono-Regular.ttf" });
 
@@ -13,6 +14,7 @@ function App({ Component, pageProps }: AppProps) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    const client = sanityClient;
     setIsServer(false);
   }, []);
 
@@ -33,6 +35,7 @@ function App({ Component, pageProps }: AppProps) {
       return () => window.removeEventListener("load", onPageLoad);
     }
   }, []);
+
   if (isServer) return null;
 
   return (

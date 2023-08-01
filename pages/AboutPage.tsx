@@ -1,11 +1,25 @@
-import { useAppState } from "@/providers/AppStateProvider";
-import React from "react";
+import { AppState, useAppState } from "@/providers/AppStateProvider";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 
 function AboutPage({}: Props) {
-  const { state } = useAppState();
+  const { state, setState } = useAppState();
+
+  useEffect(() => {
+    const route = state.routes.find((r) => r.path == location.pathname);
+
+    let newState: AppState = {
+      ...state,
+      runningAnimation: route?.cameraTargetPosition,
+      showContent: false,
+    };
+
+    setState(newState);
+  }, []);
 
   const sm = useMediaQuery("(max-width: 768px)");
 
@@ -26,8 +40,8 @@ function AboutPage({}: Props) {
         style={{
           marginLeft: "5%",
           marginRight: "5%",
-          marginTop: sm ? 30 : 100,
-          width: sm ? "auto" : "43%",
+          marginTop: sm ? 30 : 50,
+          width: sm ? "auto" : "60%",
           transition: "all 0.5s",
         }}
       >
@@ -84,26 +98,35 @@ function AboutPage({}: Props) {
             >
               <div
                 style={{
-                  height: 50,
-                  width: 50,
+                  height: 30,
+                  width: 30,
                   borderColor: "white",
                   borderStyle: "solid",
                   borderWidth: 1,
                 }}
-              ></div>
+              >
+                <a href="mailto:antoine.ando@gmail.com">
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    style={{ color: "#ffffff" }}
+                  />
+                </a>
+              </div>
               <div
                 style={{
-                  height: 50,
-                  width: 50,
+                  height: 30,
+                  width: 30,
                   borderColor: "white",
                   borderStyle: "solid",
                   borderWidth: 1,
                 }}
-              ></div>
+              >
+                {/* <FontAwesomeIcon icon={["fab fa-github"]} /> */}
+              </div>
               <div
                 style={{
-                  height: 50,
-                  width: 50,
+                  height: 30,
+                  width: 30,
                   borderColor: "white",
                   borderStyle: "solid",
                   borderWidth: 1,

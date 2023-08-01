@@ -1,10 +1,8 @@
 "use client";
 
-import { useGLTF } from "@react-three/drei";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
-import Text from "./Text";
 
 export const Moon = ({ route = "/bloc", ...props }) => {
   const radius = 30;

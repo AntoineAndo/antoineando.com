@@ -1,7 +1,14 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import HomePage from "./HomePage";
 import AboutPage from "./AboutPage";
+import ProjectsPage from "./ProjectsPage";
+import { AppState, useAppState } from "@/providers/AppStateProvider";
 
 export default function App({}: any) {
   return (
@@ -17,6 +24,8 @@ export default function App({}: any) {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about-me" element={<AboutPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:projectId" element={<ProjectsPage />} />
       </Routes>
     </div>
   );

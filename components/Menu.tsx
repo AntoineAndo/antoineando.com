@@ -11,18 +11,13 @@ function Menu({}: Props) {
   const location = useLocation();
 
   const onClick = (route: Route) => {
-    //Nothing happens if we are already on the target route
     if (location.pathname == route.path) {
       return;
     }
-
-    let newState: AppState = {
+    setState({
       ...state,
-      runningAnimation: route.cameraTargetPosition,
       showContent: false,
-    };
-
-    setState(newState);
+    });
   };
 
   return (
