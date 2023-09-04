@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import styles from "./AboutPage.module.scss";
 
 type Props = {};
 
@@ -11,6 +12,12 @@ function AboutPage({}: Props) {
 
   useEffect(() => {
     const route = state.routes.find((r) => r.path == location.pathname);
+
+    console.log(route);
+
+    // if (route && location.pathname == route.path) {
+    //   return;
+    // }
 
     let newState: AppState = {
       ...state,
@@ -25,15 +32,9 @@ function AboutPage({}: Props) {
 
   return (
     <div
+      className={styles.page}
       style={{
         opacity: state.showContent ? 1 : 0,
-        transition: "opacity 0.5s ease-in-out",
-        height: "100%",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        padding: 10,
-        fontSize: "1.1em",
       }}
     >
       <section
@@ -100,9 +101,6 @@ function AboutPage({}: Props) {
                 style={{
                   height: 30,
                   width: 30,
-                  borderColor: "white",
-                  borderStyle: "solid",
-                  borderWidth: 1,
                 }}
               >
                 <a href="mailto:antoine.ando@gmail.com">
@@ -116,9 +114,6 @@ function AboutPage({}: Props) {
                 style={{
                   height: 30,
                   width: 30,
-                  borderColor: "white",
-                  borderStyle: "solid",
-                  borderWidth: 1,
                 }}
               >
                 {/* <FontAwesomeIcon icon={["fab fa-github"]} /> */}
@@ -127,9 +122,6 @@ function AboutPage({}: Props) {
                 style={{
                   height: 30,
                   width: 30,
-                  borderColor: "white",
-                  borderStyle: "solid",
-                  borderWidth: 1,
                 }}
               ></div>
               {/* <a href="mailto:antoine.ando@gmail.com">

@@ -1,0 +1,14 @@
+
+.page {
+    transition: opacity 0.5s ease-in-out;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10;
+    font-size: 1.1em;
+
+    p {
+        margin: 0
+    }
+}

@@ -6,8 +6,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import HomePage from "./HomePage";
-import AboutPage from "./AboutPage";
-import ProjectsPage from "./ProjectsPage";
+import AboutPage from "./About/AboutPage.module";
+import ProjectsPage from "./Projects/ProjectsPage.module";
 import { AppState, useAppState } from "@/providers/AppStateProvider";
 
 export default function App({}: any) {

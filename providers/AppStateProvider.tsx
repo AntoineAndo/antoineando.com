@@ -2,7 +2,7 @@ import React from "react";
 
 export class AppState {
   isLoading: boolean = true;
-  showContent: boolean = true;
+  showContent: boolean = false;
   runningAnimation: any = undefined;
   routes: {
     name: string;

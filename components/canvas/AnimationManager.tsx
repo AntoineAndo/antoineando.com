@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect } from "react";
 import { lerp, ease } from "@/utils/utils";
 import { useAppState } from "@/providers/AppStateProvider";
@@ -8,8 +8,16 @@ type Props = {};
 let t: number;
 function AnimationManager() {
   const { state: appState, patchState } = useAppState();
+  const { scene, camera } = useThree();
+
   useEffect(() => {
+    // Réinitialisation du compteur pour l'animation à chaque changement d'animation
     t = 0;
+
+    // Si aucune animation n'est en cours, alors le contenu est affiché
+    if (appState.runningAnimation == undefined) {
+      patchState("showContent", true);
+    }
   }, [appState.runningAnimation]);
 
   const dt = 0.0007;

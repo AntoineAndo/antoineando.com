@@ -6,8 +6,6 @@ type Props = {};
 export default function ProjectsPage(props: any) {
   // const { state } = useAppState();
 
-  console.log(props);
-
   const sm = useMediaQuery("(max-width: 768px)");
 
   return (
