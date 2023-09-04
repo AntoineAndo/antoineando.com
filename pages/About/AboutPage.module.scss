@@ -11,4 +11,18 @@
     p {
         margin: 0
     }
+
+    h1 {
+        margin: 0
+    }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        flex-grow: 1;
+        transition: all 0.5s;
+        margin-left: 50px;
+    }
 }

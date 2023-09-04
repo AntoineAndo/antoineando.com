@@ -38,12 +38,10 @@ function AboutPage({}: Props) {
       }}
     >
       <section
+        className={styles.section}
         style={{
-          marginLeft: "5%",
-          marginRight: "5%",
           marginTop: sm ? 30 : 50,
           width: sm ? "auto" : "60%",
-          transition: "all 0.5s",
         }}
       >
         <h1 style={{ fontSize: 44, marginTop: 0 }}>Hi,</h1>
